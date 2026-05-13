@@ -1,0 +1,19 @@
+country: CI
+currency: XOF
+rtl: false
+zone: CEDEAO
+leave:
+  annual_days: 26
+  maternity_days: 98
+  paternity_days: 10
+payroll:
+  smig: 75000
+  cnss_employee_rate: 0.0336
+  cnss_employer_rate: 0.216
+  income_tax:
+    abatement_professional: 0.20
+    brackets:
+      - {min: 0,       max: 600000,  rate: 0.00}
+      - {min: 600000,  max: 1800000, rate: 0.10}
+      - {min: 1800000, max: 3600000, rate: 0.20}
+      - {min: 3600000, max: null,    rate: 0.32}

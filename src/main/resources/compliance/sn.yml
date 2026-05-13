@@ -1,0 +1,19 @@
+country: SN
+currency: XOF
+rtl: false
+zone: CEDEAO
+leave:
+  annual_days: 30
+  maternity_days: 98
+  paternity_days: 3
+payroll:
+  smig: 69995
+  cnss_employee_rate: 0.0558
+  cnss_employer_rate: 0.0758
+  income_tax:
+    abatement_professional: 0.25
+    brackets:
+      - {min: 0,       max: 630000,  rate: 0.00}
+      - {min: 630000,  max: 1500000, rate: 0.20}
+      - {min: 1500000, max: 4000000, rate: 0.30}
+      - {min: 4000000, max: null,    rate: 0.40}

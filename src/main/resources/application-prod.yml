@@ -1,0 +1,55 @@
+# ── Profil PROD — PostgreSQL ─────────────────────────────────────
+# Activation : --spring.profiles.active=prod
+# Ou via variable d'environnement : SPRING_PROFILES_ACTIVE=prod
+#
+# Variables d'environnement OBLIGATOIRES en prod :
+#   DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD, JWT_SECRET
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:staffone}
+    username: ${DB_USER:staffone}
+    password: ${DB_PASSWORD:staffone123}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      pool-name: StaffOnePool
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+        jdbc:
+          batch_size: 50
+        order_inserts: true
+        order_updates: true
+
+  flyway:
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+  h2:
+    console:
+      enabled: false   # Désactivé en prod
+
+staffone:
+  jwt:
+    # OBLIGATOIRE : changer en prod via variable d'environnement JWT_SECRET
+    secret: ${JWT_SECRET:staffone-dev-secret-key-256bits-minimum-length-here-padded}
+    expiration-ms: 3600000
+
+logging:
+  level:
+    com.staffone: INFO
+    org.springframework.security: WARN
+    org.flywaydb: INFO
+    org.hibernate.SQL: WARN

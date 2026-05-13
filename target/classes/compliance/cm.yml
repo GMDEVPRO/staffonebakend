@@ -1,0 +1,20 @@
+country: CM
+currency: XAF
+rtl: false
+zone: CEMAC
+leave:
+  annual_days: 24
+  maternity_days: 98
+  paternity_days: 10
+payroll:
+  smig: 41875
+  cnss_employee_rate: 0.042
+  cnss_employer_rate: 0.147
+  income_tax:
+    abatement_professional: 0.30
+    brackets:
+      - {min: 0,        max: 2000000,  rate: 0.000}
+      - {min: 2000000,  max: 3000000,  rate: 0.100}
+      - {min: 3000000,  max: 5000000,  rate: 0.165}
+      - {min: 5000000,  max: 10000000, rate: 0.275}
+      - {min: 10000000, max: null,     rate: 0.385}

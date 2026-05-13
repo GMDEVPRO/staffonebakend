@@ -1,0 +1,42 @@
+# docker-compose.yml — StaffOne DEV
+# Lance PostgreSQL + pgAdmin en local
+# Usage : docker compose up -d
+
+services:
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: staffone-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB:       staffone
+      POSTGRES_USER:     staffone
+      POSTGRES_PASSWORD: staffone123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U staffone -d staffone"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: staffone-pgadmin
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PGADMIN_DEFAULT_EMAIL:    admin@staffone.app
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  postgres-data:
+  pgadmin-data:
